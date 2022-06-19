@@ -1,0 +1,1 @@
+sudo ./stepper ../enclaves/$1/enclave.signed.so `cat ../enclaves/$1/stepper_config`

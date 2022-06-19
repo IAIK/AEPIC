@@ -1,0 +1,37 @@
+set pagination off
+define trace
+	set $end_mark = mark_end
+	while($rip != $end_mark)
+	  echo "-------\n"
+	  si
+	  #info all-registers
+
+          printf "RDI=0x%016llx\n", $rdi
+          printf "R8=0x%016llx\n", $r8
+          printf "R9=0x%016llx\n", $r9
+          printf "R10=0x%016llx\n", $r10
+          printf "R11=0x%016llx\n", $r11
+          printf "R12=0x%016llx\n", $r12
+          printf "R13=0x%016llx\n", $r13
+          printf "R14=0x%016llx\n", $r14
+          printf "XMM0=0x%016llx%016llx\n", $xmm0.v2_int64[1], $xmm0.v2_int64[0]
+          printf "XMM1=0x%016llx%016llx\n", $xmm1.v2_int64[1], $xmm1.v2_int64[0]
+          printf "XMM6=0x%016llx%016llx\n", $xmm6.v2_int64[1], $xmm6.v2_int64[0]
+          printf "XMM7=0x%016llx%016llx\n", $xmm7.v2_int64[1], $xmm7.v2_int64[0]
+          printf "XMM8=0x%016llx%016llx\n", $xmm8.v2_int64[1], $xmm8.v2_int64[0]
+          printf "XMM9=0x%016llx%016llx\n", $xmm9.v2_int64[1], $xmm9.v2_int64[0]
+        end 
+end
+set output-radix 16
+set breakpoint pending on
+set logging file /tmp/trace.log
+set logging off
+set logging on
+
+set logging overwrite on
+set logging redirect on
+set logging debugredirect on
+break mark_begin
+r
+trace
+quit

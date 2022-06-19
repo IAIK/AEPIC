@@ -1,0 +1,8 @@
+#name,              offset,    pf-start, pf-step, pf-stop, inst-start, inst-step, inst-stop, register
+#__memcpy,          0x7f00,    27,       1,       28,      20,         4,         -1,        rdi
+#__memcpy,          0x7fc0,    31,       1,       -1,      0,          1,         -1,        rdi
+#__memcpy,          0x7f00,    30,       1,       31,      21,         4,         -1,        rdi
+#sgx_get_key,       0x958c,    10,       1,       -1,      0,          1,         -1,        rdi
+#sgx_seal_data_ex,  0x8000,     0,       1,       -1,      0,          1,          1,        rdi
+#eget_key,         0x23a26,     0,       1,       -1,      0,          1,         -1,        rdi
+ __key0,            0x7fc0,    31,       1,       32,      21,         4,         26,        rdi
