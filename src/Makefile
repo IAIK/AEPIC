@@ -1,4 +1,5 @@
 all:
+	@make -C apic_dump
 	@make -C enclaves
 	@make -C runner
 	@make -C stepper

@@ -9,7 +9,7 @@ load: all
 	sudo insmod apic_module.ko
 
 run: load
-	taskset -c 5 sudo cat /dev/apic_device | xxd
+	taskset -c 0 sudo cat /dev/apic_device | xxd
 
 clean:
 	make -C /lib/modules/$(shell uname -r)/build M=$(shell pwd) clean
