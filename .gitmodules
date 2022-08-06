@@ -1,0 +1,3 @@
+[submodule "sgx-step"]
+	path = sgx-step
+	url = https://github.com/jovanbulck/sgx-step.git

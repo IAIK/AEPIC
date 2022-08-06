@@ -80,3 +80,6 @@ GTAGS
 *.orig
 *~
 \#*#
+
+build
+Module.symvers

@@ -8,14 +8,35 @@ It architecturally leaks stale data incorrectly returned by reading undefined AP
 This README provides instruction on how to build and run the described attack.
 The total install time should be around 30 minutes.
 
+## 0. Jumpstart: Run APIC Dump
+
+We provide a simple kernel module that dumps the content of the APIC MMIO region.
+This confirms that the APIC leaks data on the machine tested.
+
+```bash
+$ cd src/apic_dump
+$ make run
+```
+
+If your CPU is vulnerable, running the `apic_dump` you will observe spurious memory returned by the APIC, as opposed to `0x00` bytes.
+
+**NOTE:**
+Make sure that the machine is booted in xAPIC mode, by providing `nox2apic` in the Linux kernel command line.
+
 ## 1. Dependencies
 
-TODO Install Dependencies, e.g., g++ and libsgxstep
 ```bash
 sudo apt install -y g++-11
 ```
 
-Make sure that the machine is booted in xAPIC mode, by providing `nox2apic` in the Linux kernel command line.
+build sgx-step drivers and libraries
+```bash
+git submodule init
+cd sgx-step
+cd kernel && ./install_SGX_driver.sh && make load && cd ..
+cd sdk/intel-sdk/ && ./install_SGX_SDK.sh && source /opt/intel/sgxsdk/environment
+cd libsgxstep && make && cd ..
+```
 
 ## 2. Build
 
@@ -33,18 +54,42 @@ $ cd src
 $ make load
 ```
 
-## 4. Run APIC Dump
+## 4. Run the experiments
 
-We provide a simple kernel module that dumps the content of the APIC MMIO region.
-This confirms that the APIC leaks data on the machine tested.
+### Victim Enclaves
 
+Victim runner to experiment:
+* aes: to leak Intel IPPC AES
+* egetkey: to leak seal key
+* memory: to leak simple memory content
+* rdrand: to leak rdrand content
+* rsa: to leak rsa private key
+* simple_ssa: to leak SSA region
+
+### Enclave Runner
+
+Runs a victim enclave and waits for user input to terminate it:
 ```bash
-$ cd src/apic_dump
-$ make run
+cd src/runner
+./runner ../enclaves/aes/enclave.signed.so
 ```
 
-Running the `apic_dump` you will observe spurious memory returned by the APIC, as opposed to `0x00` bytes.
+### Enclave Dumper
 
-## 5. Run the experiments
+Dumps the whole memory of an enclave by exploiting AEPIC Leak.
+Usage: `./dumper [enclave_pid] [enclave_idx] [flags] [dump_file]`
+where flags: `x=dump_code d=dump_data p=non_present s=show r=readable`
 
-...
+E.g.,
+```bash
+./dumper `pidof runner` 0 dsr <output_file>
+```
+
+### Enclave Stepper
+
+Single steps an enclave until the required instruction, and then dumps the target registers by dumping the SSA page using AEPIC Leak.
+```bash
+sudo ./stepper <path_to_enclave> <readable> <path_to_config>
+```
+
+We use a configuration file to tell the stepper when to stop and what to dump. E.g. `src/enclaves/aes/stepper_config`.
