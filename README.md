@@ -29,11 +29,10 @@ Make sure that the machine is booted in xAPIC mode, by providing `nox2apic` in t
 sudo apt install -y g++-11
 ```
 
-build sgx-step drivers and libraries
+build sgx-step SDK and library
 ```bash
 git submodule init
 cd sgx-step
-cd kernel && ./install_SGX_driver.sh && make load && cd ..
 cd sdk/intel-sdk/ && ./install_SGX_SDK.sh && source /opt/intel/sgxsdk/environment
 cd libsgxstep && make && cd ..
 ```
@@ -89,7 +88,7 @@ E.g.,
 
 Single steps an enclave until the required instruction, and then dumps the target registers by dumping the SSA page using AEPIC Leak.
 ```bash
-sudo ./stepper <path_to_enclave> <readable> <path_to_config>
+sudo ./stepper <path_to_enclave> <print_readable> <path_to_config>
 ```
 
 We use a configuration file to tell the stepper when to stop and what to dump. E.g. `src/enclaves/aes/stepper_config`.
