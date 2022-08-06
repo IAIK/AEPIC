@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>ÆPIC Leak</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link rel="apple-touch-icon" sizes="180x180" href="public/images/apple-touch-icon.png">
+    <link rel="icon" href="public/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="public/favicon.ico" type="image/x-icon">
+    <link rel="manifest" href="public/site.webmanifest">
+    <link rel="mask-icon" href="public/images/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#00aba9">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="stylesheet" type="text/css"
+        href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,900,bold">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Luckiest+Guy">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Gentium+Book+Basic">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.8.2/css/all.css"
+        integrity="sha384-xVVam1KS4+Qt2OrFa+VdRUoXygyKIuNWUUUBZYv+n27STsJ7oDOHJgfF0bNKLMJF" crossorigin="anonymous">
+    <!--[if lt IE 9]>
+      <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <link href="css/2.css" rel="stylesheet">
+    <link href="css/0.css" rel="stylesheet">
+    <link as="style" href="css/0.css" rel="preload">
+    <link as="style" href="css/2.css" rel="preload">
+    <link as="script" href="js/main.5d6ce4aadb4211f4e665.js" rel="preload">
+    <link as="script" href="js/runtime.5d6ce4aadb4211f4e665.js" rel="preload">
+    <link as="script" href="js/vendor.5d6ce4aadb4211f4e665.js" rel="preload">
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" id="mainNav">
+            <div class="container"><a class="navbar-brand" href="index.html#"><img src="public/images/logo.svg"
+                        width="40" height="40"> <span class="navbar-brand-text">ÆPIC Leak </span></a><button
+                    class="navbar-toggler order-0" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                    aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><i
+                        class="far fa-bars"></i></button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item"><a class="nav-link" href="index.html#attack">Attack</a></li>
+                        <li class="nav-item"><a class="nav-link" href="index.html#researcher">Researchers</a></li>
+                        <li class="nav-item"><a class="nav-link" href="index.html#demo">Demo</a></li>
+                        <li class="nav-item"><a class="nav-link" href="index.html#faq">FAQ</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main role="main" data-spy="scroll" data-target="#mainNav" data-offset="0">
+        <section class="container intro" id="attack">
+            <div class="row">
+                <div class="col-12 col-lg-4">
+                    <div class="text-center"><img class="img-fluid pb-2" src="public/images/logo.svg"></div>
+                </div>
+                <div class="col-12 col-lg-8">
+                    <h1>ÆPIC Leak</h1>
+                    <p class="lead">Architecturally Leaking Uninitialized Data from the Microarchitecture</p>
+                    <p>ÆPIC Leak is the first CPU bug able to <strong>architecturally</strong> disclose sensitive data.
+                        It leverages a vulnerability in recent Intel CPUs to leak secrets from the processor itself: on
+                        most
+                        10th, 11th and 12th generation Intel CPUs the <strong>APIC MMIO</strong> undefined range
+                        incorrectly
+                        returns <strong>stale data from the cache hierarchy</strong>.</p>
+                    <p>In contrast to transient execution attacks like <a
+                            href="https://meltdownattack.com/">Meltdown</a> and <a
+                            href="https://spectreattack.com">Spectre</a>, ÆPIC Leak is an <strong>architectural
+                            bug</strong>: the sensitive data gets directly disclosed without relying on any (noisy) side
+                        channel.</p>
+                    <p>ÆPIC Leak is like an <a
+                            href="https://www.intel.com/content/www/us/en/develop/documentation/inspector-user-guide-linux/top/problem-type-reference/uninitialized-memory-access.html">uninitialized
+                            memory read</a> in the CPU itself.</p>
+
+                    <p>A <strong>privileged attacker</strong> (Administrator or root) is required to access
+                        APIC MMIO. Thus, most systems are safe from ÆPIC Leak.
+                        However, systems relying on SGX to protect data from privileged attackers would be at risk,
+                        thus, have to be <strong>patched</strong>.</p>
+                    <div class="row">
+                        <div class="col-12 pb-2"><a href="aepicleak.pdf"><button type="button"
+                                    class="btn btn-primary btn-lg btn-block"><i class="fas fa-book fa-1x"></i>
+                                    Read</button></a></div>
+                    </div>
+                    <div class="row no-gutters">
+                        <div class="col-6 pr-1"><a href="#bibtex" data-toggle="collapse"><button type="button"
+                                    class="btn btn-secondary btn-lg btn-block"><i class="fas fa-quote-right fa-1x"></i>
+                                    Cite</button></a></div>
+                        <div class="col-6 pl-1"><a href="https://github.com/IAIK/AEPIC"><button type="button"
+                                    class="btn btn-secondary btn-lg btn-block"><i class="fas fa-flask fa-1x"></i>
+                                    Try</button></a></div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-8 offset-lg-4">
+                    <div id="bibtex" class="container collapse">
+                        <div class="card card-body">
+                            <pre style="white-space:pre">
+@inproceedings{Borrello2022AEPIC,
+    title = {{ÆPIC Leak}: Architecturally Leaking Uninitialized Data from the Microarchitecture},
+    author = {Borrello, Pietro and Kogler, Andreas and Schwarzl, Martin and Lipp, Moritz and Gruss, Daniel and Schwarz, Michael},
+    booktitle = {31st USENIX Security Symposium (USENIX Security 22)},
+    year = {2022},
+}</pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="researcher researcher-begin" id="researcher">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <h1 class="display-5">Who is behind ÆPIC Leak?</h1>
+                        <div class="row">
+                            <div class="col-12 col-lg-12"><i class="fal fa-glasses fa-5x color-tug"></i>
+                                <h1 class="display-4 mt-4">Discovery & Report</h1>
+                                <p class="text-center">ÆPIC Leak was discovered and reported by:</p>
+                                <ul>
+                                    <li>
+                                        <a href="https://pietroborrello.github.io" target="_blank">Pietro Borrello</a>
+                                        (<a class="company" href="https://www.uniroma1.it" target="_blank">Sapienza
+                                            University of Rome</a>)
+                                    </li>
+                                    <li>
+                                        <a href="https://andreaskogler.com" target="_blank">Andreas Kogler</a> (<a
+                                            class="company" href="https://www.iaik.tugraz.at" target="_blank">Graz
+                                            University of Technology</a>)
+                                    </li>
+                                    <li>
+                                        <a href="https://martinschwarzl.at" target="_blank">Martin Schwarzl</a> (<a
+                                            class="company" href="https://www.iaik.tugraz.at" target="_blank">Graz
+                                            University of Technology</a>)
+                                    </li>
+                                    <li>
+                                        <a href="https://mlq.me" target="_blank">Moritz Lipp</a> (<a class="company"
+                                            href="https://aws.amazon.com/" target="_blank">Amazon Web Services</a>)
+                                    </li>
+                                    <li>
+                                        <a href="https://gruss.cc" target="_blank">Daniel Gruss</a> (<a class="company"
+                                            href="https://www.iaik.tugraz.at" target="_blank">Graz
+                                            University of Technology</a>)
+                                    </li>
+                                    <li>
+                                        <a href="https://misc0110.net" target="_blank">Michael Schwarz</a> (<a
+                                            class="company" href="https://cispa.de" target="_blank">CISPA Helmholtz
+                                            Center for Information Security</a>)
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="demo demo-begin" id="demo">
+            <div class="container">
+                <div class="row">
+                    <div class="col-8 offset-2 text-center">
+                        <h1 class="display-5">ÆPIC Leak in Action</h1>
+                        <p>In our demo, we show how an attacker can <strong>disclose data</strong> from a protected SGX
+                            enclave.
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-lg-8 offset-lg-2 video"><video id="my-player"
+                            class="video-js vjs-16-9 vjs-big-play-centered" controls preload="auto"
+                            poster="public/images/demo.png" data-setup="{}">
+                            <!-- <source src="public/videos/demo_240.mp4" type="video/mp4" label="240p">
+                            <source src="public/videos/demo_360.mp4" type="video/mp4" label="360p">
+                            <source src="public/videos/demo_480.mp4" type="video/mp4" label="480p"> -->
+                            <!-- <source src="public/videos/demo_720.mp4" type="video/mp4" label="720p" selected="true"> -->
+                            <!-- <source src="public/videos/demo_1080.mp4" type="video/mp4" label="1080p"> -->
+                            <source src="public/videos/demo.mp4" type="video/mp4" label="720p" selected="true">
+                            <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to
+                                a web browser that <a href="http://videojs.com/html5-video-support/"
+                                    target="_blank">supports HTML5 video</a></p>
+                        </video></div>
+                </div>
+            </div>
+        </section>
+        <section class="faq" id="faq">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <h1 class="display-5 text-center">Questions & Answers</h1>
+                        <div class="accordion" id="accordion">
+                            <button class="ff_faq_header btn btn-link" data-toggle="collapse" data-target="#ff_item_1"
+                                aria-expanded="true" aria-controls="ff_item_1">Am I affected by this bug?</button>
+                            <div id="ff_item_1" class="collapse" data-parent="#accordion">
+                                <div class="ff_faq_item">
+                                    <p>If you have a recent Intel CPU probably yes. But if you do not rely on SGX, you
+                                        don&#39;t have to worry.</p>
+                                    <p>Intel provides a list with all affected products <a
+                                            href="https://www.intel.com/content/www/us/en/security-center/advisory/intel-sa-XXXX.html"
+                                            target="_blank">here</a>.</p>
+                                </div>
+                            </div>
+                            <button class="ff_faq_header btn btn-link" data-toggle="collapse" data-target="#ff_item_1c"
+                                aria-expanded="true" aria-controls="ff_item_1c">Does ÆPIC Leak affect traditional
+                                application and virtual machine isolation?</button>
+                            <div id="ff_item_1c" class="collapse" data-parent="#accordion">
+                                <div class="ff_faq_item">
+                                    <p>No, in our current assessment, we believe that ÆPIC Leak is <strong>only relevant
+                                            to Intel SGX enclaves</strong>. ÆPIC Leak requires access to the
+                                        <strong>physical</strong> APIC MMIO page that can be achieved only with a
+                                        <strong>high privileges</strong>. Traditional applications do not have to worry
+                                        about ÆPIC Leak.
+                                    </p>
+                                    <p>
+                                        Virtual Machines have no access to physical memory since <strong>no hypervisor
+                                            allows it</strong>. We empirically verified that APIC virtualization (Intel
+                                        APICv) is not affected by ÆPIC Leak.
+                                    </p>
+                                </div>
+                            </div>
+                            <button class="ff_faq_header btn btn-link" data-toggle="collapse" data-target="#ff_item_1b"
+                                aria-expanded="true" aria-controls="ff_item_1b">What is Intel SGX?</button>
+                            <div id="ff_item_1b" class="collapse" data-parent="#accordion">
+                                <div class="ff_faq_item">
+                                    <p><a href="https://en.wikipedia.org/wiki/Software_Guard_Extensions">Intel Software
+                                            Guard eXtensions (SGX)</a> is an innovative processor technology released in
+                                        2015 to create isolated environments in the computer&#39;s memory, so-called
+                                        enclaves. SGX acts like a secure vault in the processor itself, combining strong
+                                        encryption and hardware-level isolation to safeguard enclave programs, and the
+                                        data they operate on, <strong>even against very advanced types of malware that
+                                            compromise the operating system, hypervisor, or firmware (BIOS).</strong>
+                                    </p>
+                                </div>
+                            </div>
+                            <button class="ff_faq_header btn btn-link" data-toggle="collapse" data-target="#ff_item_1d"
+                                aria-expanded="true" aria-controls="ff_item_1d">What is the APIC?</button>
+                            <div id="ff_item_1d" class="collapse" data-parent="#accordion">
+                                <div class="ff_faq_item">
+                                    <p>
+                                        The <strong>Advanced Programmable Interrupt Controller</strong> (APIC) is an
+                                        integrated CPU
+                                        component responsible for accepting, prioritizing, and dispatching
+                                        <strong>interrupts</strong> to
+                                        processors. The APIC can operate in xAPIC mode, in
+                                        which APIC configuration registers are exposed through a memory-mapped I/O
+                                        (MMIO)
+                                        page.
+                                    </p>
+                                </div>
+                            </div>
+                            <button class="ff_faq_header btn btn-link" data-toggle="collapse" data-target="#ff_item_1a"
+                                aria-expanded="true" aria-controls="ff_item_1a">Is this
+                                a software bug?</button>
+                            <div id="ff_item_1a" class="collapse" data-parent="#accordion">
+                                <div class="ff_faq_item">
+                                    <p>No. This is a bug in the processor. Software can work around this bug, which
+                                        costs performance. Future processors will have integrated fixes.</p>
+                                </div>
+                            </div>
+                            <button class="ff_faq_header btn btn-link" data-toggle="collapse" data-target="#ff_item_1e"
+                                aria-expanded="true" aria-controls="ff_item_1e">Is this
+                                a speculative execution attack?</button>
+                            <div id="ff_item_1e" class="collapse" data-parent="#accordion">
+                                <div class="ff_faq_item">
+                                    <p>No. This is an <strong>architectural</strong> bug in the processor.</p>
+                                    <p>Differently than <a href="https://meltdownattack.com/">Meltdown</a>, <a
+                                            href="https://foreshadowattack.eu/">Foreshadow</a>, <a
+                                            href="https://zombieloadattack.com/">ZombieLoad</a>, <a
+                                            href="https://lviattack.eu/">LVI</a>, <a href="https://mdsattacks.com/">RIDL
+                                            and Fallout</a>, that leak data by leveraging <strong>transient
+                                            execution</strong>, ÆPIC Leak leverages a bug in the CPU that reveals data
+                                        where it should not, like an <a
+                                            href="https://www.intel.com/content/www/us/en/develop/documentation/inspector-user-guide-linux/top/problem-type-reference/uninitialized-memory-access.html">uninitialized
+                                            memory read</a> in the CPU itself.</p>
+                                </div>
+                            </div>
+                            <button class="ff_faq_header btn btn-link" data-toggle="collapse" data-target="#ff_item_1f"
+                                aria-expanded="true" aria-controls="ff_item_1f">Is this
+                                mitigated?</button>
+                            <div id="ff_item_1f" class="collapse" data-parent="#accordion">
+                                <div class="ff_faq_item">
+                                    <p>This is not a transient execution attack, thus, it bypasses <strong>all</strong>
+                                        existing mitigations. Intel released microcode and SGX SDK updates to fix the
+                                        issue.</p>
+                                </div>
+                            </div>
+                            <button class="ff_faq_header btn btn-link collapsed" data-toggle="collapse"
+                                data-target="#ff_item_2" aria-expanded="true" aria-controls="ff_item_2">Can I detect if
+                                someone has exploited the ÆPIC Leak against me?</button>
+                            <div id="ff_item_2" class="collapse" data-parent="#accordion">
+                                <div class="ff_faq_item">
+                                    <p>We do not have any data on this. The exploitation might not leave any traces in
+                                        traditional log files.</p>
+                                </div>
+                            </div>
+                        </div><button class="ff_faq_header btn btn-link collapsed" data-toggle="collapse"
+                            data-target="#ff_item_4" aria-expanded="true" aria-controls="ff_item_4">What can be
+                            leaked?</button>
+                        <div id="ff_item_4" class="collapse" data-parent="#accordion">
+                            <div class="ff_faq_item">
+                                <p>If your system is affected, our proof-of-concept ÆPIC Leak exploit can read stale
+                                    data, which may correspond to data previously accessed by the same processor
+                                    core.
+                                </p>
+                            </div>
+                        </div>
+                        <button class="ff_faq_header btn btn-link collapsed" data-toggle="collapse"
+                            data-target="#ff_item_5" aria-expanded="true" aria-controls="ff_item_5">Has this been
+                            abused in the wild?</button>
+                        <div id="ff_item_5" class="collapse" data-parent="#accordion">
+                            <div class="ff_faq_item">
+                                <p>We don&#39;t know. But probably not.</p>
+                            </div>
+                        </div>
+                        <button class="ff_faq_header btn btn-link collapsed" data-toggle="collapse"
+                            data-target="#ff_item_7" aria-expanded="true" aria-controls="ff_item_7">Is there more
+                            technical information about ÆPIC Leak?</button>
+                        <div id="ff_item_7" class="collapse" data-parent="#accordion">
+                            <div class="ff_faq_item">
+                                <p>Yes, there is an academic <a href="aepicleak.pdf">paper</a>.</p>
+                            </div>
+                        </div>
+                        <button class="ff_faq_header btn btn-link collapsed" data-toggle="collapse"
+                            data-target="#ff_item_9" aria-expanded="true" aria-controls="ff_item_9">What is
+                            CVE-2022-21233?</button>
+                        <div id="ff_item_9" class="collapse" data-parent="#accordion">
+                            <div class="ff_faq_item">
+                                <p>CVE-2022-21233 is the official reference to ÆPIC Leak.
+                                    <abbr title="Common Vulnerabilities and Exposures">CVE</abbr> is the Standard
+                                    for Information Security Vulnerability Names maintained by MITRE.
+                                </p>
+                            </div>
+                        </div>
+                        <button class="ff_faq_header btn btn-link collapsed" data-toggle="collapse"
+                            data-target="#ff_item_10" aria-expanded="true" aria-controls="ff_item_10">Can I use the
+                            logo?</button>
+                        <div id="ff_item_10" class="collapse" data-parent="#accordion">
+                            <div class="ff_faq_item">
+                                <p>The logo is free to use, rights waived via <a
+                                        href="http://creativecommons.org/publicdomain/zero/1.0">CC0</a>. Logo designed
+                                    by <a href="https://www.theresadachauer.at/">Theresa Dachauer</a>.
+                                </p>
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th>SVG</th>
+                                            <th>PNG</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        <tr>
+                                            <td>Logo</td>
+                                            <td><a href="public/images/logo.svg"><i class="fa fa-download"></i></a></td>
+                                            <td><a href="public/images/logo.png"><i class="fa fa-download"></i></a></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <button class="ff_faq_header btn btn-link collapsed" data-toggle="collapse"
+                            data-target="#ff_item_11" aria-expanded="true" aria-controls="ff_item_11">Is there
+                            proof-of-concept code?</button>
+                        <div id="ff_item_11" class="collapse" data-parent="#accordion">
+                            <div class="ff_faq_item">
+                                <p>Yes, there is a <a href="https://github.com/IAIK/AEPIC" target="_blank"><i
+                                            class="fa fa-sm fa-external-link-alt"></i> GitHub
+                                        repository</a> containing source code for the ÆPIC Leak attack.</p>
+                                <p>In alternative, here is a <strong>minimal PoC</strong> of ÆPIC Leak:</p>
+                                <pre>
+u8* apic_base = map_phys_addr(0xFEE00000);
+dump(apic_base);</pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </section>
+        <section class="acknowledgements" id="acknowledgements">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <h2>Acknowledgements</h2>
+                        <p>We would like to thank <a class="company" target="_blank" href="https://intel.com">Intel</a>
+                            for working with us during the responsible disclosure.</p>
+                        <p>Funding for part of this research was provided by
+                            generous gifts from Amazon and Red Hat.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <footer class="site-footer container">
+            <p class="float-right"><a href="index.html#"><i class="fas fa-arrow-to-top"></i></a></p>
+            <p><i class="far fa-copyright"></i> 2022 &middot; All Rights Reserved.</p>
+        </footer>
+    </main>
+    <script src="js/runtime.5d6ce4aadb4211f4e665.js"></script>
+    <script src="js/vendor.5d6ce4aadb4211f4e665.js"></script>
+    <script src="js/main.5d6ce4aadb4211f4e665.js"></script>
+</body>
+
+</html>
