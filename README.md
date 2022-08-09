@@ -1,6 +1,6 @@
 # AEPIC Leak
 
-This is the PoC implementation for the USENIX 2022 paper [**AEPIC Leak: Architecturally Leaking Uninitialized Data from the Microarchitecture**]() by [Pietro Borrello](https://pietroborrello.github.io), [Andreas Kogler](https://andreaskogler.com), [Martin Schwarzl](https://martinschwarzl.at/), [Moritz Lipp](https://mlq.me/), [Daniel Gruss](https://gruss.cc), and [Michael Schwarz](https://misc0110.net).
+This is the PoC implementation for the USENIX 2022 paper [**AEPIC Leak: Architecturally Leaking Uninitialized Data from the Microarchitecture**](https://aepicleak.com/aepicleak.pdf) by [Pietro Borrello](https://pietroborrello.github.io), [Andreas Kogler](https://andreaskogler.com), [Martin Schwarzl](https://martinschwarzl.at/), [Moritz Lipp](https://mlq.me/), [Daniel Gruss](https://gruss.cc), and [Michael Schwarz](https://misc0110.net).
 
 AEPIC Leak is the first architectural CPU bug that leaks stale data from the microarchitecture without using a side channel.
 It architecturally leaks stale data incorrectly returned by reading undefined APIC-register ranges.
