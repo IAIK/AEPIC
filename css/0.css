@@ -11464,7 +11464,7 @@ main {
 .faq .ff_faq_header[aria-expanded=false]:after,
 .faq .ff_faq_header[aria-expanded=true]:after {
     display: block;
-    content: "\f107";
+    content: "\f078";
     position: absolute;
     right: 20px;
     font-family: FontAwesome;
