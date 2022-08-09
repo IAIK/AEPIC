@@ -10923,7 +10923,7 @@ main {
 
 .alert h4.alert-heading {
     color: #0071c5;
-    font-family: Permanent Marker, cursive
+    font-family: Luckiest Guy;
 }
 
 .alert-danger,
@@ -11373,7 +11373,8 @@ main {
     font-weight: 700;
     font-size: 1.4rem;
     padding-left: 1rem;
-    font-family: Permanent Marker, cursive
+    font-family: Luckiest Guy;
+    font-weight: 300;
 }
 
 .navbar-light .navbar-nav .nav-item {
